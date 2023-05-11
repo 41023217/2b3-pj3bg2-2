@@ -50,6 +50,7 @@ brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <p>將 iterable 與 iterator <a href="https://home.gamer.com.tw/creationDetail.php?sn=4337438">相關說明</a>, 利用 Brython 與 Ace Editor 整理在這個頁面.</p>
+<p></p>
 <!-- 導入 brython 程式庫 -->
 <p>
 <script src="/static/brython.js"></script>
@@ -107,7 +108,7 @@ def run1():
     try:
         url = doc.query["src"]
     except:
-        url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c3a6deaf717f8f2739a4b1392a5ab10936e9693a/from_1_add_to_10_1.py"
+        url = "https://gist.githubusercontent.com/41023224/7dcb7310273a21399b43a82af3f34851/raw/708ee4b02fecf76a140ade730ca2e5a71ecf8f88/w10.py"
     prog = open(url).read()
 
     # 將程式載入編輯區
@@ -174,129 +175,10 @@ doc["add1to100"].bind('click', add)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div1"></div>
 <!-- editor1 結束 --><hr/><!-- ########################################## -->
-<p>從 1 累加到 100 part2:</p>
-<p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button><button id="threejsblock">Rotating Block</button></p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd2(ev):
-    bd = doc["brython_div2"]
-    bd.clear()
-Ace3 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run2():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src2"]
-    except:
-        url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c3a6deaf717f8f2739a4b1392a5ab10936e9693a/from_1_add_to_10_1.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace3.editor.setValue(prog)
-    Ace3.editor.scrollToRow(0)
-    Ace3.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace3.run()
-
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run2'].bind('click', Ace3.run)
-doc['kw_show_console2'].bind('click', Ace3.show_console)
-doc['kw_clear_console2'].bind('click', Ace3.clear_console)
-doc['clear_bd2'].bind('click', clear_bd2)
-# 呼叫函式執行
-run2()
-</script>
-</p>
-<p><!-- add 1 to 100 part2 開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd2(ev):
-    bd = doc["brython_div2"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace4 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
-
-# 透過 Ace4 以類別建立一個通用的 button2, 可以在多個案例中將 gist 程導入編輯區
-
-class button2:
-    def __init__(self, url):
-        self.url = url
-
-    # 記得加入 event 輸入變數
-    def do(self,ev):
-        Ace4.editor.setValue(open(self.url).read())
-        Ace4.editor.scrollToRow(0)
-        Ace4.editor.gotoLine(0)
-        Ace4.run()
-
-add1to100_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py"
-
-# 從 gist 取得程式碼
-add_src = open(add1to100_url).read()
-def add2(ev):
-    Ace4.editor.setValue(add_src)
-    Ace4.editor.scrollToRow(0)
-    Ace4.editor.gotoLine(0)
-    Ace4.run()
-
-# id 為 "add1to100part2" 的按鈕點按時, 執行 add 方法
-doc["add1to100part2"].bind('click', add2)
-# 以下為運用 button2 class 的通用 gist 程式導入區
-################################## cango_three_gears start
-cango_three_gears_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/cango_three_gears_brython_div2.py"
-cango_three_gears = button2(cango_three_gears_url)
-doc["cango_three_gears"].bind("click", cango_three_gears.do)
-################################## cango_three_gears end
-################################## bsnake start
-bsnake_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/kmol_snakey.py"
-bsnake = button2(bsnake_url)
-doc["bsnake"].bind("click", bsnake.do)
-################################## bsnake end
-################################## aitetris start
-aitetris_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/pygame_to_brython_tetris_ai.py"
-aitetris = button2(aitetris_url)
-doc["aitetris"].bind("click", aitetris.do)
-################################## aitetris end
-################################## threejsblock start
-threejsblock_url = "https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/df37802f9e8a386b6424f7945af622b1cd0a9ca5/threejs_rotating_block.py"
-threejsblock = button2(threejsblock_url)
-doc["threejsblock"].bind("click", threejsblock.do)
-################################## threejsblock end
-</script>
-</p>
-<p><!-- add 1 to 100 part2 結束--></p>
-<!-- editor2 開始 -->
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor2" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
 <p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run2">Run</button> <button id="kw_show_console2">Output</button> <button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div2"></div>
-<!-- editor2 結束 --><hr/>
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p>
-<h2>Brython_ex2</h2>
+</p><h2>Brython_ex2</h2>
 <p>This code uses the Euler method to approximate the solution to the ODE dy/dx = x - y with an initial condition of y0 = 1.0. The solution is calculated for a range of x values from 0 to 5.</p>
 <p id="brython_div"></p>
 <script src="/static/brython.js"></script>
@@ -809,238 +691,26 @@ Plotly.newPlot('plot', data, layout)
 &lt;script src="https://cdn.jsdelivr.net/npm/brython@3/dist/brython"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
-<h1>w9</h1>
-<p></p>
-<h2>41023201</h2>
-<p>心得:</p>
-<p>在電腦教室看影片做的時候開成cmsimde無法跑機器人程式，改成python之後程式可正常運作。</p>
-<p>ipconfig沒有複製完整導致機器人無法移動，重新檢查並修改錯誤之後已經可以正常移動。</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/W-LS8c4w-lI" title="YouTube video player" width="560"></iframe></p>
-<h2>41023215</h2>
-<p>心得:這堂課讓我學習到如何控制機器人，也讓我學到很多東西。</p>
-<script>
-var winkVideoData_w6_2 = {
-  dataVersion: 1,
-  frameRate: 10,
-  buttonFrameLength: 5,
-  buttonFrameOffset: 2,
-  frameStops: {
-  },
-};
-</script>
-<!-- 接下來將 mp4 檔案從 downloads 目錄取出 -->
-<div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/static" data-varname="winkVideoData_w9" height="630" muted="true" width="1008">
-<source src="/downloads/w9.mp4" type="video/mp4"/></video></div>
-<h2>41023217</h2>
-<p>心得:每次維護倉儲都會發現問題，也學到如何使用zmqRemoteAPI操控機器人</p>
-<script>
-var winkVideoData_41023217 w9 = {
-  dataVersion: 1,
-  frameRate: 10,
-  buttonFrameLength: 5,
-  buttonFrameOffset: 2,
-  frameStops: {
-  },
-};
-</script>
-<!-- 接下來將 mp4 檔案從 downloads 目錄取出 -->
-<div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/static" data-varname="winkVideoData_w9" height="630" muted="true" width="1008">
-<source src="/downloads/41023217 w9.mp4" type="video/mp4"/></video></div>
-<h2>41023224</h2>
-<p>心得:雖然剛開始遇到一些困難，像在使用ipconfig時，還有在acp時無法成功，還好在試過之後排除了錯誤，並成功地在coppeliasim上面導入這個使用鍵盤控制的機器人，並成功的讓它動起來，之後會再慢慢學習更多coppeliasim以及python程式之應用。</p>
-<p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/x9xbYWgPghE" title="YouTube video player" width="560"></iframe></p>
-<h1>w10</h1>
-<p>41023224</p>
-<p>Q1:</p>
-<div>What is zmqRemoteAPI, and how does it relate to CoppeliaSim?</div>
-<div>Ans1:</div>
+<p><br/><span></span><br/><br/><br/></p>
 <div>
-<p><span>zmqRemoteAPI 是CoppeliaSim 軟件中使用來遠程控制和通訊的介紹面，可以讓使用者通過網絡連接到CoppeliaSim，並進行遠程操作和資料傳輸。它是基於 ZeroMQ 協議現實的，讓使用者可以透過編程的方式來控制CoppeliaSim中的機器人、傳感器和執行器等對象，並獲取仿真中的資料、修改對象屬性或執行者執行仿真腳本等操作。</span></p>
-<p><span>Q2: </span></p>
-<p>How do you establish a connection between a Python script and CoppeliaSim using zmqRemoteAPI?</p>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
 <div></div>
-<div>Ans2:</div>
-<div>可以使用Python的zmqRemoteAPI來與CoppeliaSim建立連接。</div>
-<div>
-<p>以下是一個Python程式碼範例：</p>
-<pre><code class="language-python"><span class="hljs-keyword">import</span> sim
-<span class="hljs-keyword">import</span> sys
-
-sim.simxFinish(-<span class="hljs-number">1</span>) <span class="hljs-comment"># just in case, close all opened connections</span>
-clientID=sim.simxStart(<span class="hljs-string">'127.0.0.1'</span>,<span class="hljs-number">19999</span>,<span class="hljs-literal">True</span>,<span class="hljs-literal">True</span>,<span class="hljs-number">5000</span>,<span class="hljs-number">5</span>) <span class="hljs-comment"># Connect to CoppeliaSim</span>
-
-<span class="hljs-keyword">if</span> clientID!=-<span class="hljs-number">1</span>:
-    <span class="hljs-built_in">print</span> (<span class="hljs-string">'Connected to remote API server'</span>)
-<span class="hljs-keyword">else</span>:
-    <span class="hljs-built_in">print</span> (<span class="hljs-string">'Failed connecting to remote API server'</span>)
-    sys.exit(<span class="hljs-string">'Could not connect'</span>)
-
-sim.simxFinish(clientID) <span class="hljs-comment"># Close the connection<br/><br/></span></code><strong></strong></pre>
-<div>Q3:
-<div>
-<div>What are some common use cases for zmqRemoteAPI in CoppeliaSim?</div>
-<pre></pre>
-<div>Ans3:
-<div>通過Python腳本控制機器人<br/>通過Python控制感測器</div>
-<div></div>
-<div></div>
-<div>Q4:
-<div>
-<div>What are the advantages and disadvantages of using zmqRemoteAPI compared to other methods of communication between Python and CoppeliaSim?</div>
-<div></div>
-<div>Ans4:
-<div>
-<div>優點:
-<div>
-<div><span>(1) zmqRemoteAPI 基於 ZeroMQ，可保證與 CoppeliaSim 之間的通信速度和穩定性</span></div>
-<div><span>(2) 可以輕鬆地控制 CoppeliaSim</span></div>
-<div><span>(3) 使用 zmqRemoteAPI 可以輕鬆地自定義許多 CoppeliaSim 的行為</span></div>
-<div><span>缺點:</span></div>
-<div><span>(1) zmqRemoteAPI 僅適用於使用了 ZeroMQ</span></div>
-<div><span>(2) ZeroMQ 遠程API可能會導致性能問題</span></div>
-<div><span></span></div>
-<div><span>Q5:</span>
-<div>
-<div>
-<div>Can you give an example of a project or task that you could complete using zmqRemoteAPI in CoppeliaSim?</div>
-<div></div>
-<div>Ans5:</div>
-<div><span>例如：遠端機器人運動控制，感測器數據收集，視覺檢測等等</span><br/><br/><br/><br/></div>
-</div>
 <div><span></span></div>
 <br/><br/></div>
 </div>
 </div>
 <div></div>
-<!-- 導入 brython 程式庫 -->
-<p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-</p>
-<!-- 啟動 Brython -->
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
-<script src="/static/ace/filereader.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script src="/static/ace/ace.js" type="text/javascript"></script>
-<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
-<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
-<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
-<script src="/static/Cango-24v03-min.js"></script>
-<script src="/static/gearUtils-09.js"></script>
-<script src="/static/SVGpathUtils-6v03-min.js"></script>
-<script src="/static/sylvester.js"></script>
-<script src="/static/PrairieDraw.js"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run1():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src"]
-    except:
-        url = "https://gist.githubusercontent.com/41023224/7dcb7310273a21399b43a82af3f34851/raw/708ee4b02fecf76a140ade730ca2e5a71ecf8f88/w10.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace1.editor.setValue(prog)
-    Ace1.editor.scrollToRow(0)
-    Ace1.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace1.run()
-
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run1'].bind('click', Ace1.run)
-doc['kw_show_console1'].bind('click', Ace1.show_console)
-doc['kw_clear_console1'].bind('click', Ace1.clear_console)
-doc['clear_bd1'].bind('click', clear_bd1)
-# 呼叫函式執行
-run1()
-</script>
-</p>
-<p><!-- add 1 to 100 開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-add1to100_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py"
-
-# 從 gist 取得程式碼
-add_src = open(add1to100_url).read()
-def add(ev):
-    Ace2.editor.setValue(add_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "add1to100" 的按鈕點按時, 執行 add 方法
-doc["add1to100"].bind('click', add)
-</script>
-</p>
-<p><!-- add 1 to 100 結束--></p>
-<!-- editor1 開始 -->
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div1"></div>
-<!-- editor1 結束 --><hr/><!-- ########################################## -->
-<p></p>
-<p>
-<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p>
 </div>
 </div>
 </div>
@@ -1051,51 +721,3 @@ doc["add1to100"].bind('click', add)
 </div>
 </div>
 </div>
-<p>type="text"&gt;.py <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></p>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div1"></div>
-<!-- editor1 結束 --><hr/><!-- ########################################## -->
-<p></p>
-<p></p>
-<p></p>
-<h1>w11</h1>
-<div><a href="/downloads/足球場景.7z">足球場景.7z</a></div>
-<div></div>
-<div><a href="/downloads/最終檔.ttt">最終檔.ttt</a></div>
-<div></div>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="577" src="https://www.youtube.com/embed/WnenSBOMh9k" title="足球場景的記分板設計" width="1117"></iframe></p>
-<p></p>
-<p><img alt="" height="608" src="/images/螢幕擷取畫面 2023-05-04 184917.png" width="1080"/></p><h2>41023201-2</h2>
-<p>圖檔</p>
-<p><a href="/downloads/bg4.ttt" title="bg4 ttt 圖檔">bg4 ttt 圖檔</a></p>
-<p><a href="/downloads/bg4 圖檔.stl" title="bg4 stl 圖檔">bg4 stl 圖檔</a></p>
-<p>心得:一開始設計時球門空隙沒有設計好導致球會從空隙滾走、圓角大小沒有抓好會卡住球。</p>
-<p>經過修改跟測試已解決問題。</p>
-<p>自評:60</p>
-<h2>41023215-2</h2>
-<p>自評分數:60</p>
-<p>心得:這次的合作讓我學到很多，雖然過程中遇到很多問題，但最後都有解決掉。</p>
-<p><a href="/downloads/足球場景.7z" title="足球記分板程式檔.7z">足球記分板程式檔.7z</a></p><h2>41023217-2</h2>
-<p>自評分數:65</p>
-<p>心得: 在四個人一組的分工合作中，遇到不知如何錄影及球無法進門的問題，學到如何把youtube影片放上去，最後都有成功。</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="577" src="https://www.youtube.com/embed/WnenSBOMh9k" title="足球場景的記分板設計" width="1117"></iframe></p>
-<p></p>
-<p><img alt="" height="608" src="/images/螢幕擷取畫面 2023-05-04 184917.png" width="1080"/></p>
-<h2>41023224-2</h2>
-<p></p>
-<p>自評分數:65</p>
-<p>心得:<span>在這次的協同合作中，我學到很多東西，有時候組員之間不是單一個人的作業，而是大家一起分工合作，尤其是在做場景以及寫程式的時候，因為大家都沒有很熟悉只能大家分組去找，幸好在後面有成功解決並做出來。</span><br/><br/></p>
-<p><span><a href="/downloads/足球場景.7z" title="足球記分板程式檔.7z">足球記分板程式檔.7z</a></span></p>
-<div></div>
-<div></div>
-<p>
-<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p>
